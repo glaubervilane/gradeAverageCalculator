@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Grade Average Calculator 3.2</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<h1>Grade Average Calculator 3.2</h1>
+	<!-- invalid section -->
+	<p id="invalid"></p>
+	
+	<div id="grade">
+		<!-- The User Input -->
+		<input type="number" id="input" placeholder="Enter Grade">
+
+		<!-- Submit Button for grades -->
+		<button id="submit" onclick="input(document.getElementById('input').value)">Submit</button>
+
+		<!-- Done Button for final average -->
+		<button id="reset" onclick="reset()">Reset</button>
+	</div>
+	
+	<!-- Output section -->
+	<p id="output"></p>
+	
+	<!-- The Current Average -->
+	<p id="average">Put your students' grades one at a time</p>
+		
+	
+	
+	<script>
+	  var grades = [];
+	    // Function to gather input
+		function input(number) {
+			// Reset the input box
+			document.getElementById("input").value = "";
+			// Checking if its a valid input
+			if (number == "") {
+				document.getElementById("invalid").innerHTML = "Please put a number between 0-100.";
+			} else if (number >= 0 && number <= 100) {
+				grades.push(number);
+				cal(number);
+				document.getElementById("invalid").innerHTML = "";
+			} else {
+				document.getElementById("invalid").innerHTML = "Invalid input, Please put a number between 0-100.";
+			}
+		}
+		
+		// Function for calculating
+		function cal(number) {
+			// Calculating the average
+			var total = 0;
+			for (var i = 0; i < grades.length; i++) {
+				total += parseInt(grades[i]);
+			}
+			var average = Math.round(total / grades.length);
+			
+			// Check if they should review or not
+			var review = "";
+			if (average >= 70) {
+				review = "Good job!";
+			} else {
+				review = "You should consider reviewing the concepts.";
+			}
+			
+			// Checking if they pass or fail
+			if (number >= 50) {
+				currentOutput(number, "Passed", average, review);
+			} else {
+				currentOutput(number, "Failed", average, review);
+			}
+			
+		}
+				
+		//outputs current grade and average
+		function currentOutput(number, pass, average, review) {
+			document.getElementById("output").innerHTML += number + "% " + pass + "<br>";
+		    document.getElementById("average").innerHTML = "The average is: " + average + "% " + review;
+		}
+		
+		// Function for the done button
+		function reset() {
+			location.reload();
+		}
+		
+	</script>
+</body>
+</html>
