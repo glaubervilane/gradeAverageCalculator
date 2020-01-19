@@ -1,3 +1,3 @@
-This is my first git file just for practice using this tools
-
-Readme alteration to change my system
+This is a simple grade average calculator created during New Media Design course on Louis Riel Arts & Technology Centre 
+The user just need to input grades in the input field and submit one by one and after that click submit button, then is showed up the average.
+This simple program uses JavaScript coding language into HTML embedded with some styles.
